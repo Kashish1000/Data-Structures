@@ -1,0 +1,42 @@
+#include<iostream>
+using namespace std;
+void print_array(int arr[],int n)
+{
+    int i;
+    for(i=0;i<n;i++)
+    {
+        cout<<" "<<arr[i];
+    }
+    cout<<endl;
+}
+void selection_sort(int arr[],int n)
+{
+    int min,i,j,temp;
+    /* 
+      2 for loops are used , 1 to iterate the elements of the array upto (n-1)st element
+      2nd loop is used to find the minimum element in the unsorted array
+    */
+    for(i=0;i<n-1;i++) 
+    {
+        min=i;
+       for(j=i+1;j<n;j++)
+        {
+            if(arr[j]<arr[min])
+            min=j;
+        } 
+        temp=arr[i];
+        arr[i]=arr[min];
+        arr[min]=temp;
+    }
+    cout<<"Array after selection sort is :"<<endl;
+    print_array(arr,6);
+}
+int main()
+{
+    int arr[]={10,1,20,8,3,6};
+    cout<<"Array before selection sort is:"<<endl;
+    print_array(arr,6);
+    selection_sort(arr,6);
+    
+    return(0);
+}
