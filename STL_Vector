@@ -20,6 +20,16 @@ int main()
     auto itr=v1.cbegin(); // value of the location pointed by the cbegin() can not be changed
     cout<<endl<<"Value of itr pointing to constant is : "<<*itr;
     // *itr=*itr+1; // Error: Assignment to read only location
-    
+    cout<<endl<<"Value of vector in reverse manner is :";
+    for(auto itr=v1.crbegin();itr!=v1.crend();itr++)
+    cout<<" "<<*itr;
+    v1.resize(4);
+    cout<<endl<<"Vector after resizing is :";
+    for(auto itr=v1.begin();itr!=v1.end();itr++)
+    {
+        cout<<" "<<*itr;
+    }
+   // auto itr=v1.crbegin();
+  //  cout<<endl<<" Value of itr for crbegin is :"<<*itr;
     return(0);
 }
