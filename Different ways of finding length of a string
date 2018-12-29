@@ -17,6 +17,7 @@ int main()
     cout<<endl<<"Using strlen(str1) "<<n<<" ,Using sizeof(str1) "<<m;
     n=strlen(str2);   // strlen() behaves abnormally if it doesn't found null character
                       // str2 doesn't stores null character while str1 does.
+                      // defined inside the <string.h> file
    
     m=sizeof(str2);     
     cout<<" Using strlen(str2) "<<n<<" ,Using sizeof(str2) "<<m;
