@@ -1,0 +1,58 @@
+// Stack can be implemented in 2 ways 1) By using Stack 2) By using Linked list
+#include<iostream>
+#define MAX 100
+using namespace std;
+class Stack{
+    
+    int data[MAX],top=-1;  // data should be kept private
+    public:
+    void isEmpty();
+    void push(int item);
+    void pop();
+    void peek();
+};
+void Stack::isEmpty()  // check whether stack is empty or not 
+{
+    if(top<0)   cout<<endl<<"Yes,Stack is Empty";
+    else        cout<<endl<<"No, Stack is not Empty";
+}
+void Stack::push(int item)
+{
+    if(top>=MAX-1)  // check for the overflow
+    cout<<endl<<"Error Stack Overflow:";
+    else
+    data[++top]=item;
+    cout<<endl<<item<<" : is pushed into the stack";
+}
+void Stack:: pop()
+{
+    if(top<0)  // check for underflow
+    {
+        cout<<endl<<"Error Stack Underflow";
+        
+    }
+    else 
+    {
+        cout<<endl<<data[top--]<<" : is popped from the stack";
+    }
+}
+void Stack::peek()
+{
+    if(top<0) cout<<endl<<"No Element present in stack";
+    else 
+    cout<<endl<<"After peeking into the stack:"<<data[top];
+    
+}
+int main()
+{
+    Stack s1;
+    cout<<"s1.push(10) :"; s1.push(10);
+    cout<<endl<<"s1.push(20) :"; s1.push(20);
+    cout<<endl<<"s1.push(30) :"; s1.push(30);
+    cout<<endl<<"s1.pop() : "; s1.pop();
+    cout<<endl<<"s1.pop() : "; s1.pop();
+    cout<<endl<<"s1.isEmpty() :"; s1.isEmpty();
+    cout<<endl<<"s1.peek() :"; s1.peek();
+    
+    return(0);
+}
