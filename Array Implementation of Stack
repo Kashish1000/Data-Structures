@@ -1,4 +1,4 @@
-// Stack can be implemented in 2 ways 1) By using Stack 2) By using Linked list
+// Stack can be implemented in 2 ways 1) By using array 2) By using Linked list
 #include<iostream>
 #define MAX 100
 using namespace std;
