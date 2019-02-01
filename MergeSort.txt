@@ -1,0 +1,92 @@
+// MergeSort Implementation
+#include<iostream>
+using namespace std;
+// In MergeSort we divide the given array into 2 halves by calculating the middle element. 
+// after separating each element from each other we store each element in temp arrays and compare them pair wise. 
+// We increase the size of temp arrays for comparisons in each iteration after we get to a point when every element is stored in separate array
+
+void print_array(int arr[],int size)
+{
+    for(int i=0;i<size;i++)
+    {
+        cout<<" "<<arr[i];
+    }
+}
+
+void merge(int arr[],int l,int m,int r)  // merge function compares the elements and merge them in sorted order
+{
+    int i,j,k;
+    int n1=m-l+1; // size of temp array1 , 1 is added for the case when m & l are 0
+    int n2=r-m; // size of temp array2
+    int L[n1],R[n2];
+    // Copy the elements in temp array
+    for(i=0;i<n1;i++)
+    L[i]=arr[l+i];
+    for(j=0;j<n2;j++)
+    R[j]=arr[m+1+j];
+    
+    i=0; // iterator i to iterate temp array1
+    j=0; // iterator j to iterate temp array2
+    k=l; // iterator k is for original array arr
+    while(i<n1 && j<n2)
+    {
+        if(L[i]<R[j])
+        {
+            arr[k]=L[i];
+            i++;
+    
+        }   
+        else if(L[i]>R[j])
+        {
+            arr[k]=R[j];
+            j++;
+        }
+        k++;
+    }
+    
+    if(i<n1)  // if temp array2 is vanished
+    {
+        while(i<n1)
+        {
+            arr[k]=L[i];
+            i++;
+            k++;
+        }
+    }
+    else if(j<n2) // if temp array1 is vanished
+    {
+        while(j<n2)
+        {
+            arr[k]=R[j];
+            j++;
+            k++;
+        }
+    }
+} // end of merge function
+
+void Merge_sort(int arr[],int l,int r)
+{
+   
+    if(l<r)
+    {
+        int m=(l+(r-1))/2;
+        Merge_sort(arr,l,m);
+        Merge_sort(arr,m+1,r);
+        merge(arr,l,m,r);
+        
+    }
+    
+}
+
+int main()
+{
+    int arr[]={10,1,4,39,20};
+    int size=(sizeof(arr)/sizeof(arr[0]));
+    cout<<endl<<"Array before merge sort is :";
+    print_array(arr,size);
+    Merge_sort(arr,0,size);
+    cout<<endl<<"Array after merge sort is :";
+    print_array(arr,size);
+    
+    return(0);
+}
