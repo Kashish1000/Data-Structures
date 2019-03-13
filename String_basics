@@ -122,6 +122,29 @@ int main() {
 	cout<<endl<<str;
 	return 0;
 }
+
+# Removing of spaces from a string 
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+	string str="Welcome To  Geeks  For  Geeks";
+    cout<<str;
+    for(int i=0,len=str.size();i<len;i++) // because we are updating the terminating condition ( i.e. The value of the lenght is variable , it reduces when we remove any punctuation letter)
+	{
+	   if(str[i] ==' ')
+	   {
+	       str.erase(i,1);
+	       i--;
+	       len=str.size(); // updating the lenght of the string
+	   }
+	   
+	}
+	cout<<endl<<str;
+
+	return 0;
+}
 ============================================================================================================================================================
 
 Palindrome partioning : If every substring formed is a palindrome.
