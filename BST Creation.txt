@@ -1,0 +1,73 @@
+/* 
+Creation of BST
+    BST maintains following property
+    1) left child is smaller than root node.
+    2) right child is greater than root node.
+    3) above 2 properties are valid in subtrees as well.
+    
+ insert() function is used to insert new key in BST.
+ it recursively call itself and when we reach to a null node where key element is 
+ to be inserted then it creates a new node and returns its address to previous call made. 
+*/
+#include<iostream>
+using namespace std;
+
+struct node 
+{
+    int data;
+    struct node *left;
+    struct node *right;
+}*root=NULL;
+// Creates a new node 
+struct node* create_node(int key)
+{
+    struct node *root=(struct node *)malloc(sizeof(struct node));
+    root->data=key;
+    root->left=NULL;
+    root->right=NULL;
+    
+    return(root);
+}
+// It maintains the BST property
+struct node* insert(struct node *root, int key)
+{
+    if(root==NULL)
+    {
+        root=create_node(key);
+        return(root);
+    }
+    else
+    {
+        if(key<root->data)
+        root->left=insert(root->left,key);
+        else if(key>root->data)
+        root->right=insert(root->right,key);
+        
+    }
+    return(root);
+}
+void inorder(struct node *root)
+{
+
+    if(root!=NULL)
+    {
+        inorder(root->left);
+        cout<<" "<<root->data;
+        inorder(root->right);
+    }
+}
+int main()
+{
+    cout<<endl<<"Creating BST :";
+    root=insert(root,50);
+    insert(root,40);
+    insert(root,60);
+    insert(root,10);
+    insert(root,45);
+    insert(root,55);
+    insert(root,70);
+    cout<<endl<<" Inorder traversal of BST is :";
+    inorder(root);
+
+    return(0);    
+}
