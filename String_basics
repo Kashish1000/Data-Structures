@@ -1,0 +1,159 @@
+We can initialise a string by following methods
+VERY IMPORTANT NOTE : C Language doesnot have string data type.
+		      C++ have string data type
+   	To use strlen() & strcpy() in C++ use #include<cstring> header file in C++ to deal with the C-style string ( i.e. null terminated char arrays ) & use 	char array for this 
+# To remove a character from a string in C++ , use erase(start, no of characters to be removed ); // all parameters are integers
+# To check for the puctuation( Special characters ) ,  use ispunct(ch) method , this method is available in both C & C++
+
+
+# in C , using scanf() to input the string , we don't require to use & operator with the name of the string , for example
+#include<stdio.h>
+int main()
+{
+	char str[4];
+	scanf("%s",str); // no need of & operator as name of the string itself gives the base address of the string
+	printf("%s",str);	
+
+	return(0);
+}
+
+# char str[]={'H','E','L','L','O','\0'};
+  char str[]="HELLO";
+  In case 1 , we have to add null character at the end to treat it as a string . If we don't add the null character then it will show an undefined behaviour,    if we work or pass a non-null-ended-character-array.
+
+  In case 2 : Null character is automatically added. 
+
+Both will give a size of 6 ( as null is also added in first case ) 
+
+The name of the char array will give the base address of the string.
+
+We can also use char type pointer to point to a string.
+
+#include<cctype.h> header file describes set of functions which classify or transform the individual characters.
+
+for example 
+ isupper() , toupper() 
+ islower() , tolower()
+ isxdecimal() -> to check if a given character is a hexadecimal digit or not?
+ isdigit() -> to check if a given character is a digit or not
+
+Different methods to find the length of the string.======================================================== 
+
+#include<bits/stdc++.h>  // It includes all the basic libraries
+#include<string.h>
+using namespace std; // to avoid name conflicts
+int main()
+{
+    
+    char str1[]={"geeks"}; // char array , but here str1 also includes the null character, because a string ends with a null character 
+    char str2[]={'g','e','e','k','s'};
+    string str3="geeks";  // diff b/w char array and string : string ends with null character
+    // note : strrev is not a c++ function, either use pointer or stack, or container to reverse a string in C++
+    // strrev function is defined in <string.h> file in C only
+    // stack will take extra space of O(n) , while using pointers will not 
+    int n=strlen(str1);  // strlen() accepts the pointer to an array , it calculates the number of memory positions or characters passed before the null character
+    int m=sizeof(str1);
+    cout<<endl<<"str1[]={'geeks'}";
+    cout<<endl<<"str2[]={'g','e','e','k','s'}";
+    cout<<endl<<"Using strlen(str1) "<<n<<" ,Using sizeof(str1) "<<m;
+    n=strlen(str2);   // strlen() behaves abnormally if it doesn't found null character
+                      // str2 doesn't stores null character while str1 does.
+                      // defined inside the <string.h> file
+   
+    m=sizeof(str2);     
+    cout<<" Using strlen(str2) "<<n<<" ,Using sizeof(str2) "<<m;
+    cout<<endl<<" strlen(str2) is behaving abnormally here";
+    m=str3.length();
+    cout<<endl<<"using str3.lenght():"<<m; // string.length() function is used for only string , not for character array
+    // string.length() function is same as strlen(character_array), i.e. it counts for the number of characters before the null character
+    return(0);
+}
+# use of str.size() method
+
+#include <iostream>
+#include<string>
+using namespace std;
+
+int main() {
+	string str="hello";
+	int len=str.size();
+	cout<<len;
+	return 0;
+} // use str.size() method in c++ for string having data type as string
+
+# puts() method is used to write C style string only ( i.e. char array ending with the null character ), can be used in C & C++ both
+#include <iostream>
+#include<string>
+using namespace std;
+
+int main() {
+	string str="hello";
+	char str2[]="Hello2";
+	cout<<str;
+	puts(str2);
+	return 0;
+}
+
+# use of str.erase() method and ispunct(ch) method 
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+	string str="Welcome???@@##$ to#$% Geeks%$^for$%^&Geeks";
+	cout<<str<<endl;
+    for(int i=0;i<str.size();i++)	
+    {
+	    if(ispunct(str[i]))
+	    cout<<" "<<str[i];
+	}
+	cout<<endl<<"Removing punctuation from the string :";
+	
+	for(int i=0,len=str.size();i<len;i++) // because we are updating the terminating condition ( i.e. The value of the lenght is variable , it reduces when we remove any punctuation letter)
+	{
+	   if(ispunct(str[i]))
+	   {
+	       str.erase(i,1);
+	       i--;
+	       len=str.size(); // updating the lenght of the string
+	   }
+	   
+	}
+	cout<<endl<<str;
+	return 0;
+}
+
+# Removing of spaces from a string 
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+	string str="Welcome To  Geeks  For  Geeks";
+    cout<<str;
+    for(int i=0,len=str.size();i<len;i++) // because we are updating the terminating condition ( i.e. The value of the lenght is variable , it reduces when we remove any punctuation letter)
+	{
+	   if(str[i] ==' ')
+	   {
+	       str.erase(i,1);
+	       i--;
+	       len=str.size(); // updating the lenght of the string
+	   }
+	   
+	}
+	cout<<endl<<str;
+
+	return 0;
+}
+============================================================================================================================================================
+
+Palindrome partioning : If every substring formed is a palindrome.
+If a string is palindrome then 0 cuts are needed. 
+This problem is simillar to matrix chain multiplication problem. Like matrix chain we try to make a cut at all possible position and recursivelly calculate the cost of each cut and returns the minimum value.
+
+In memoization ( Top Down Approach ) : We store the most recent state values.
+
+
+
+
+
