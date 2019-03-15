@@ -12,3 +12,5 @@ int main() {
     cout<<str;
 	return 0;
 }
+
+// We can also use the append() function to do so.
