@@ -1,0 +1,35 @@
+// If string is empty then we will append " a " at the end ,otherwise we will find the first character in the string from the end other than  
+// "z" and increment that character, if the 
+#include <iostream>
+#include <string>
+#include<bits/stdc++.h>
+using namespace std;
+
+string nextWord(string str)
+{
+    int i=str.size()-1;
+    if(str=="")
+    {
+        return("a");
+    }
+    while( str[i]=='z' && i>=0 )
+    {
+        i--;
+    }
+    if(i== -1)
+    str+='a';
+    else 
+    str[i]++;
+    
+    return(str);    
+}
+
+int main() 
+{
+	string str="competitiveCodingzzz";
+	cout<<"Given String is : "<<str;
+	cout<<endl<<"Lexicographic next string is : ";
+	cout<<nextWord(str);
+	
+	return 0;
+}
