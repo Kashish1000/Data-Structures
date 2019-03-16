@@ -1,0 +1,36 @@
+#include <stdio.h> 
+#include <limits.h> 
+  
+// Returns true if arr[i..n-1] represents a 
+// max-heap 
+int isHeap(int arr[],  int n) 
+{ 
+     int i=0;
+    for(i=0;i<=(n-2)/2;i++)
+    {
+        // check root greater than left child
+        if(arr[i]<arr[2*i+1]) 
+        return(0);
+        // check root greater than right child
+        if(2*i+2<n && arr[i]<arr[2*i+2]) // special case if parent node has only 1 child, in this case child will be the left child and no right child will be present , this can happen only if we reach the end of the heap
+        return(0);
+        
+        // clubbed statement 
+        //if(arr[i]<arr[2*i+1] ||(2*i+2<n && arr[i]<arr[2*i+2] ) )
+        //return(0);
+    }
+    return(1);
+    
+} 
+
+  
+// Driver program 
+int main() 
+{ 
+    int arr[] = {90, 15, 10, 7, 12, 2, 7, 3}; 
+    int n = sizeof(arr) / sizeof(int); 
+  
+    isHeap(arr, n-1)? printf("Yes"): printf("No"); 
+  
+    return 0; 
+} 
