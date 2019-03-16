@@ -1,0 +1,51 @@
+/*
+Binary_Heap -> A Binary Tree -> Complete Tree ( This property makes binary heap to be stored in an array suitably )
+Binary_Heap -> Complete Binary Tree -> Can be Max Heap or Min Heap
+Representation -> A Binary Heap is represented as an array
+With the help of heap every time I will have a pointer to a Minimum or Maximum value 
+Traversal method of Binary Heap is level order.
+i-1 / 2 - Parent node
+2i + 1 - Left Child
+2i + 2 - Right Child 
+The last internal node is stored at (2n-2)/2 index in array
+The leaf nodes starts after (n-2)/2 index. If you want to print all the parent nodes in heap then print nodes having index <= (n-2)/2 and if you want to print all the leaf nodes of heap then print nodes having index > (n-2)/2
+To store billions of nodes use heap.
+
+INT_MIN && INT_MAX are macros defined in C/C++ , we can use them to decrease or increase the value of any key to the minimum or maximum value allowed. These macros are very useful in competitive coding.
+
+Basic Operations on minHeap 
+ extractMin()
+ getMin()
+ insert()
+ delete()
+ decreaseKey()
+ minHeapify()
+ left()
+ right()
+ parent()
+
+*/
+
+// To check if given array is min binary heap
+#include <iostream>
+#include <string>
+using namespace std;
+
+bool checkHeap(int heap[],int i, int n)
+{
+    // if a leaf node
+    if(i>((n-2)/2)) return true;
+    // if a internal node is smaller than than its child nodes or not
+    if(heap[i]<heap[2*i+1] && heap[i]<heap[2*i+2] && checkHeap(heap,2*i+1,n) && checkHeap(heap,2*i+2,n) )
+    return(true);
+        
+
+    return(false);
+}
+int main() {
+
+    int heap[]={10,20,30,40,50};
+    int n=sizeof(heap)/sizeof(int);
+	checkHeap(heap,0,n-1)?cout<<"Given array is binary heap":cout<<"Not a binary heap";
+	return 0;
+}
