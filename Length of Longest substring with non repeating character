@@ -1,0 +1,76 @@
+/* 
+We will create an array which will store the last occurance of any element.
+Ascii table has 256 characters so, we will create an array [ visited or last ] of size 256 which will store the occurance of any character at the last time in the string considered so far.
+Suppose that last[str[2]] will indicate the last index at which the 3rd element in the string occured.
+last[str[0]]=0 // it means that the first character of the string occurs at the 0th index.
+So will initialise 2 variables 
+currentLength and maxLength so far as 1
+currentLen=1;
+maxLen=1;
+Now we have already considered the first element so we can directly skip to the 2nd element.
+
+Edge Cases: 
+If the str[i] doesn't belong to the current substring then we increment the current length by 1 
+
+Else if str[i] occured before so we update the length of the max substring as current length
+ && we change the currentLen to exclude the previous occurance of the character from our newly considered substring
+	currentLen=i-last[str[i]] // "i" is the current index, str[i] is the current element we are scanning, last[str[i]] will indicate the last index at which the element str[i] occured.
+ 
+After iteration we again update the maximum length to the current length if maximumLen is smaller than the currentLen
+*/
+
+#include <iostream>
+#include<cstring>
+#include<stdlib.h>
+using namespace std;
+#define NO_OF_CHARS 256
+
+int maxSubstring(char *str)
+{
+    int currentLen,maxLen,i;
+    int *last=(int *)malloc(sizeof(int)*NO_OF_CHARS); // dynamically created an array to store the last occurance of every character scanned 
+    last[str[0]]=0; // the first charcter occurs at the 0th index
+    currentLen=1;
+    maxLen=1;
+    //int n=sizeof(str)/sizeof(str[0]);
+    int n=strlen(str);
+    cout<<n<<endl;
+    for(i=1;i<strlen(str);i++) // initialising the array with -1 from index 1 to n-1
+    {
+        last[i]=-1;
+    }
+    for(i=1;i<strlen(str);i++)
+    {
+        // if element is not yet visited
+        if(last[str[i]]==-1)
+        {
+            currentLen++;
+            last[str[i]]=i;
+        }
+        else // if element is visited before and is included in our current string , 
+                //then we will exclude the previous character from our new substring by decreasing the currenLen of our substring
+        {
+            if(maxLen< currentLen ) 
+            maxLen=currentLen;
+            currentLen=i-last[str[i]];   // xaybastu    old substring xayb , currentLen=4-1 =3 , new substring = yba                
+            last[str[i]]=i;
+        }
+        
+        
+    } // End of iteration
+    if(maxLen < currentLen) 
+    maxLen=currentLen;
+    free(last);
+    return(maxLen);
+}
+
+int main() {
+//    char str[]= "ABDEFGABEF";
+    char str[]="xacvabnmde";
+    int len;
+    len=maxSubstring(str);
+    cout<<len;
+    //len=maxSubstring(str2);
+    //cout<<endl<<len;
+	return 0;
+}
