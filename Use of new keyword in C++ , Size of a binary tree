@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+int size=0;
+class node
+{
+    public:
+    int data;
+    node *left;
+    node *right;
+};
+node* newNode(int key)
+{
+    node *Node=new node();
+    Node->data=key;
+    Node->left=NULL;
+    Node->right=NULL;
+    
+    return(Node);
+}
+void inOrder(node *root)
+{
+   if(root==NULL)
+   return;
+   inOrder(root->left);
+   cout<<"  "<<root->data;
+   size++;
+   inOrder(root->right);
+    
+    
+}
+
+int main() {
+	node *root=newNode(1);
+    root->left=newNode(2);
+    root->right=newNode(3);
+    root->left->left=newNode(4);
+    root->left->right=newNode(5);
+    root->right->left=newNode(6);
+    root->right->right=newNode(7);
+    cout<<endl<<"Inorder Traversal of binary tree is : ";
+    inOrder(root);
+	cout<<endl<<"Size of the binary tree is :"<<size;
+	
+	return 0;
+}
