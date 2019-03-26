@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    //char[number_of_strings][Max_size_of_string] (both is C & C++), drawback is that max size is already fixed , so memory would be wasted
+    char words1[4][10]={"Create","Design","Code","Build"};
+    
+    // 2) Using string keyword(only C++) , space is saved as size of string is not fixed 
+    string words2[]={"Create","Design","Code","Build"};
+    // 3) Using vector(only C++) , best choice as it dynamically allocates the array
+    vector<string> words3;
+    words3.push_back("Create");
+    words3.push_back("Design");
+    words3.push_back("Code");
+    words3.push_back("Build");
+    for(int i=0;i<4;i++)
+    {
+        cout<<words1[i]<<" "<<words2[i]<<" "<<words3[i]<<endl;
+    }
+    cout<<sizeof(words1)/sizeof(words1[0]);
+    cout<<endl<<sizeof(words2)/sizeof(words2[0]);
+    cout<<endl<<words3.size();
+    cout<<endl;
+    return(0);
+}
