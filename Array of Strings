@@ -1,15 +1,19 @@
+// sizeof(array) will return the sum of sizes of pointers corresponding to each string. 
+// sizeof(array[0]) will return the size of the pointer corresponding to the first string. 
+// Thus, sizeof(array)/sizeof(array[0]) returns the number of strings
+
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
+int main()
+{
 	string words[]={"the","a","there","their","any"};
 	cout<<"Size of 1st pointer :"<<sizeof(words[0]);
 	cout<<endl<<"Size of 2nd Pointer same as 1st pointer :"<<sizeof(words[1]);
 	// size is same as 32 , so  it indicates that words[0], words[1] are just pointer of string type
-    // so to calculate the total number of the words in array of strings, do following
-    cout<<endl<<"Size of 5 pointers :"<<sizeof(words);
-    cout<<endl<<"Total number of words in a string or we can say total number of pointers in array of string :"<<sizeof(words)/sizeof(words[0]);
-    // Here we are calculating the size of 5 pointers divided by the size of 1 pointer
-	
+        // so to calculate the total number of the words in array of strings, do following
+        cout<<endl<<"Size of 5 pointers :"<<sizeof(words);
+        cout<<endl<<"Total number of words in a string or we can say total number of pointers in array of string :"<<sizeof(words)/sizeof(words[0]);
+        // Here we are calculating the size of 5 pointers divided by the size of 1 pointer
 	return 0;
 }
