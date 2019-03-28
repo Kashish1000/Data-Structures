@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+int maxDiv(int N, int divisor)   // it divides a number from the maximum power of the divisor
+{
+    while(N%divisor==0)
+    {
+        N=N/divisor;
+    }
+    return(N);
+}
+bool isUgly(int N) // check if given number is ugly number or not
+{
+    N=maxDiv(N,2);  // divide from the maximum possible power of 2  
+    N=maxDiv(N,3);  // divide from the maximum possible power of 3 
+    N=maxDiv(N,5);  // divide from the maximum possible power of 5 
+    return( (N==1)?true:false;
+}
+int findUgly(int N) // this finds the Nth ugly number
+{
+    int i=1,count=0;
+    while(count<N)
+    {
+        if(isUgly(i)) count++; // if i is ugly number increment counter variable count
+        i++; // iterate forward
+    }
+    return(i-1);
+}
+int main() {
+   int n=20;
+   cout<<n<<"th Ugly number is :"<<findUgly(n);
+   
+	return 0;
+}
