@@ -1,8 +1,11 @@
-//Basic Implementation of STL map which stores the key, value pair in the mapped fashion and stored only unique values of the keys
+//Basic Implementation of STL map which are associative containers and stores the key, value pair in the mapped fashion and stored only unique values of the keys
 // Map doesnot stores the multiple keys for the same value
 // use pair<int,int> to insert only int values , 
 // use make_pair(arg int, arg string) function to store values of type other than int
-// map::insert(pair<int,int>(a,b)), make_pair(val1, val2), map::erase(key),map::size(),find(key),
+// map::insert(pair<int,int>(a,b)), make_pair(val1, val2), map::erase(key),map::size(),find(key), map::clear(),map::empty()
+// use of map::[key]=value operator to insert key , value in the map
+// map[2] returns the value at key= 2, it is similar to the at() function
+// but differs from the at() function in a manner that at() function returns array index out of bound exception but [] operator shows undefined behaviour when access exceded size
 #include<iostream>
 #include <bits/stdc++.h>
 using namespace std;
@@ -16,8 +19,10 @@ int main() {
     m1.insert(pair<int,int>(3,30));
     m1.insert(pair<int,int>(2,20));
     m1.insert(pair<int,int>(5,60));
-   // Map inserts only above values as it stores unique keys only,
-   //m1.insert(pair<int,int>(5,50));
+    // map::[key]=value
+    m1[6]=70; // This also inserts the key, value pair in the map
+    // Map inserts only above values as it stores unique keys only,
+    //m1.insert(pair<int,int>(5,50));
     
     cout<<"Map prints the output in sorted way as follows :"<<endl;
     map<int,int>::iterator itr;
@@ -50,6 +55,8 @@ int main() {
     {
         cout<<" "<<itr2->first<<" :"<<itr2->second<<endl;
     }
-    
+ cout<<endl<<"Clearing the m1:"<<endl;
+ m1.clear();
+    m1.empty()?cout<<"M1 is empty now":cout<<"M1 is not empty";
     return 0;
 }
