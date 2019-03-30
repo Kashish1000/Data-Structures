@@ -1,0 +1,55 @@
+//Basic Implementation of STL map which stores the key, value pair in the mapped fashion and stored only unique values of the keys
+// Map doesnot stores the multiple keys for the same value
+// use pair<int,int> to insert only int values , 
+// use make_pair(arg int, arg string) function to store values of type other than int
+// map::insert(pair<int,int>(a,b)), make_pair(val1, val2), map::erase(key),map::size(),find(key),
+#include<iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    map<int,int> m1;
+    // map<int,int,int> m2; Error, A map consits of 1 key value pair only , if value data consists of 2 elements then use nesting( other map to store only values of the keys)
+    // We insert the key-value pair in the map
+    m1.insert(pair<int,int>(4,40));
+    m1.insert(pair<int,int>(1,10));
+    m1.insert(pair<int,int>(3,30));
+    m1.insert(pair<int,int>(2,20));
+    m1.insert(pair<int,int>(5,60));
+   // Map inserts only above values as it stores unique keys only,
+   //m1.insert(pair<int,int>(5,50));
+    
+    cout<<"Map prints the output in sorted way as follows :"<<endl;
+    map<int,int>::iterator itr;
+    for(itr=m1.begin();itr!=m1.end();itr++)
+    {
+        cout<<" "<<itr->first<<" :"<<itr->second<<endl;
+    }
+    cout<<endl<<"Number of elements present in map1 are :"<<m1.size();
+    
+    // Check if any key is present using map::count() function
+    // map::count(key) returns 1 is key is present else returns 0
+    m1.count(5)?cout<<endl<<"key 5 is present in map":cout<<endl<<"key 5 Absent";
+    m1.count(10)?cout<<endl<<"key 10 is present in map":cout<<endl<<"key 10 Absent";
+    
+    //map::erase(key) erases the key from the map
+    m1.erase(5);
+    cout<<endl<<"Map after erasing key 5 is :"<<endl;
+    for(itr=m1.begin();itr!=m1.end();itr++)
+    {
+        cout<<" "<<itr->first<<" :"<<itr->second<<endl;
+    }
+     cout<<endl<<"Number of elements present in map1 are :"<<m1.size()<<endl;
+    itr=m1.find(1); 
+    cout<<endl<<"Using find() function to find the key 1, itr now points to key=1 :"<<itr->first<<" "<<itr->second<<endl;
+    // Inserting string values in the map
+    map<int,string> m2;
+    map<int,string>:: iterator itr2;
+    m2.insert(make_pair(1,"Hello"));
+    for(itr2=m2.begin();itr2!=m2.end();itr2++)
+    {
+        cout<<" "<<itr2->first<<" :"<<itr2->second<<endl;
+    }
+    
+    return 0;
+}
