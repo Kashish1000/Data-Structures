@@ -1,0 +1,88 @@
+A map is an associative container which stores the key-value pair in ordered way. 
+The basic difference b/w the map and the unordered-map is that they both differs in storing the elements.
+
+In unordered-map elements are not stored in the order by the key. Elements are placed into "buckets" based on a hash value computed for their key.
+
+storage scheme:
+Map - BST ( self balancing BST like Red-Black Trees)
+Unordered-map - Hash Table
+
+So, unordered Map is typically faster than the Ordered map.
+==============================================================================================
+// Maximum product of 2 elements present in the array itself
+// O(n^3) implementation
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int arr[]={30, 10, 9, 3, 35}; // 3,9,10,30,35
+	int maxProduct=-1,product;
+	int n=sizeof(arr)/sizeof(arr[0]);
+	sort(arr,arr+4); // sort function takes both begin and end addresses
+	for(int i=0;i<n;i++)
+	cout<<arr[i]<<" ";
+	
+	for(int i=0;i<n-1;i++)   // O(n^3) solution
+	{
+	    for(int j=i+1;j<n;j++)
+	    {
+	        product=arr[i]*arr[j];
+	        for(int k=j+1;k<n;k++)
+	        {
+	            if(arr[k]==product)
+	            {
+	                if(product>maxProduct)
+                    maxProduct=product;	            
+	            } 
+	        }
+	    }
+	}
+	cout<<endl<<maxProduct;
+	return 0;
+}
+
+=============================================================================================
+using HashTable ( unordered_map )
+O(n*log(n))  Implementation
+
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+int findProd(int arr[],int n)
+{
+    unordered_map<int,int> m;
+    
+    for(int i=0;i<n;i++)
+    m[arr[i]]++;
+    
+    sort(arr,arr+n);
+    
+    for(int i=n-1;i>1;i--) // check for the last number upto the 3rd number if there is any divisor 
+    {
+        for(int j=0; j<i && arr[j]<=sqrt(arr[i]);j++) // divisor can be <= sqrt of the number 
+        {
+            if( arr[i]%arr[j] == 0 )
+            {
+                int multiple=arr[i]/arr[j];
+                if(arr[j]!=multiple && m[multiple]>0) // divisor * multiple = arr[i], here we are checking if multiple is present in the array using hashtable
+                return(arr[i]); // return the bigger product if multiple present in the array
+                if(arr[j]==multiple && m[multiple]>1 ) // for cases like product =4 , so the multiple & divisor are 2 * 2 for this 2 should repeat twice in the array
+                return arr[i];
+                
+            }    
+        }
+    }
+    return(-1); // return -1 , if no max product found 
+}
+
+int main() {
+    int arr[]={17, 2, 1, 5,10,15, 30,300};
+    int n=sizeof(arr)/sizeof(arr[0]);
+    cout<<findProd(arr,n);
+    
+	
+	return 0;
+}
+
