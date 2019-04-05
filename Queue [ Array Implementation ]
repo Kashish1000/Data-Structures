@@ -1,0 +1,128 @@
+#include<iostream>
+using namespace std;
+
+class queue 
+{
+    public:
+        int front,rear,size;
+        unsigned int capacity;
+        int *array;
+        
+};
+// operations of queue
+// enqueue, dequeue, isFull , isEmpty, front, rear
+
+queue* newQueue(int capacity) // initialise a queue
+{
+    queue* q1=new queue();
+    q1->front=0;
+    q1->capacity=capacity;
+    q1->size=0; // to store the current size of the queue
+    q1->rear=capacity-1; // we will take use of modulus to increment rear
+    // alternate of this is to initialise rear with 0 and increment until capacity-1
+    q1->array=new int[capacity];
+    
+    return(q1);
+}
+// to check if the queue is full
+bool isFull(queue* q1)
+{
+    if(q1->size==q1->capacity)
+    return(true);
+    else
+    return(false);
+}
+// to check if the queue is isEmpty
+bool isEmpty(queue* q1)
+{
+    if(q1->size==0)
+    return(true);
+    else
+    return(false);
+}
+// enqueue a new item to the queue
+void enqueue(queue* q1,int item)
+{
+    if(isFull(q1)) // before inserting new item first check for the overflow 
+    cout<<endl<<"Error ! Queue is Overflow";
+    else
+    {
+        q1->rear=(q1->rear+1)%(q1->capacity);
+        q1->array[q1->rear]=item;
+       // q1->rear=q1->rear+1; // increment rear after inserting the element in queue
+        q1->size=(q1->size+1);  // current size of the queue
+        cout<<endl<<item<<" enqueued to the queue q1";    
+    }
+    
+}
+void dequeue(queue*q1)
+{
+    if(isEmpty(q1))
+    cout<<endl<<"Error dequeuing from the queue, queue is empty";
+    else
+    {
+        cout<<endl<<q1->array[q1->front]<<" : Deqeued from the queue";
+        q1->front=q1->front+1;
+        q1->size=q1->size-1;
+    }
+    
+}
+void front(queue *q1)
+{
+    if(isEmpty(q1))
+    cout<<endl<<"Error getting front , Queue is empty";
+    else
+    cout<<endl<<"Front of the queue is :"<<q1->array[q1->front];
+}
+void rear(queue *q1)
+{
+    if(isEmpty(q1))
+    cout<<endl<<"Error getting rear , Queue is empty";
+    else
+    cout<<endl<<"Rear of the queue is :"<<q1->array[q1->rear];
+    
+}
+// to print a queue
+void printQueue(queue* q1)
+{
+    if(isEmpty(q1))
+    {
+        cout<<endl<<"Error, queue is empty";
+    }
+    else
+    {
+        int ptr=q1->front;
+        cout<<endl<<"Queue is :";
+        while(ptr!=(q1->rear+1))
+        {
+            cout<<" "<<q1->array[ptr];
+            ptr++;
+        }
+    }
+}
+
+int main()
+{
+    queue *q1=newQueue(5);    
+    
+    enqueue(q1,10);
+    enqueue(q1,20);
+    enqueue(q1,30);
+    enqueue(q1,40);
+    enqueue(q1,50);
+    
+    printQueue(q1);
+    cout<<endl<<"Enqueuing item 60: ";
+    enqueue(q1,60);
+    
+    dequeue(q1);
+    printQueue(q1);
+    front(q1);
+    rear(q1);
+    dequeue(q1);
+    dequeue(q1);
+    printQueue(q1);
+    front(q1);
+    rear(q1);
+    return(0);
+}
