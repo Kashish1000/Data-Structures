@@ -1,0 +1,12 @@
+// Lets say the linked list is  1->2->3->4->5
+// And we have to delete the node 3 ( pointer ptr is given and pointing to the node having data 3 )
+// To delete this node we have to relink the next of the previous (2nd) node to point to the 4th node. But we can't traverse back as given list is singly list.
+// Approach: take a pointer which points to the next of the given ptr , copy the data of next node to the current node and delete the next node.
+
+void DeleteNode(struct node *ptr)
+{
+    struct node *temp=ptr->next;
+    ptr->data=temp->data;
+    ptr->next=temp->next;
+    free(temp);
+}
