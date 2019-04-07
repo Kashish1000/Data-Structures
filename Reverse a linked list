@@ -1,0 +1,18 @@
+// Take 3 pointers prev, current , next
+// Initialise prev, next = NULL && current = head;
+
+struct node* Reverse_List(struct node* head)
+{
+  struct node *prev=NULL, *next=NULL;
+  struct node *current=head;
+  
+  while(current!= NULL)
+  {
+      next=current->next;
+      current->next=prev;
+      prev=current;
+      current=next;
+  }
+  head=prev;
+  return(head);
+}
