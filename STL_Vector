@@ -63,3 +63,4 @@ int main()
     }
     return(0);
 }
+// To sort the vector use sort(v1.begin(), v1.end()); function defined in algorithm macro
