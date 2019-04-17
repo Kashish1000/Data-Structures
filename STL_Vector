@@ -54,6 +54,9 @@ int main()
     }
     cout<<endl<<"Value of vector after assigning it array values :"<<endl;
     v1.assign(a,a+6);
+    // we can also use copy(first_iterator_o, last_iterator_o, back_insertor(vect2) ) function 
+    // assign operator only takes assign(first_iterator_o, last_iterator_o) 
+    // total 2 member functions on vector class copy(), assign()
     for(auto itr=v1.begin();itr!=v1.end();itr++)
     {
         cout<<" "<<*itr;
